@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from '../auth.service';
 import { Http, RequestOptions, Headers } from '@angular/http'
 
 export class User {
@@ -17,12 +16,19 @@ export class User {
 export class LoginComponent implements OnInit {
     public user = new User('','');
     
-    constructor(public authService: AuthService, private http: Http) {}
+    constructor(private http: Http) {}
 
     ngOnInit() {
     }
 
     login() {
-        this.authService.login(this.user.username, this.user.password);
+        let body = {"username":this.user.username,"password":this.user.password};
+        let bodyString = JSON.stringify(body);
+        let headers = new Headers({ 'Content-Type': 'text/html; charset=utf-8' });
+        let options = new RequestOptions({ headers: headers }); // Create a request option
+
+        this.http.post('http://localhost:8080/api/login', body, options).map(res =>  {
+            localStorage.setItem('token', res.headers.get("Authorization"));
+            }).subscribe();
     }
 }

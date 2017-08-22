@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "todolist-app-client"
+    "name": "ffbe-app-client"
   },
   "apps": [
     {

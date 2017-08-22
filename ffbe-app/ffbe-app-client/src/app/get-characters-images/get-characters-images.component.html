@@ -1,0 +1,10 @@
+<div class="form-group">
+  <div class="col-md-6" >
+    <input type="text" [(ngModel)]="searchText" 
+           class="form-control" placeholder="Search By Name" />
+  </div>
+</div>
+
+<figure style = "float: left;" *ngFor="let character of characters | character: searchText">
+	<img [src]="character.image" [title]="character.name" style="border-style: groove;">
+</figure>

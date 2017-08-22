@@ -4,22 +4,25 @@ import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 
 import {AppComponent} from "./app.component";
-import {httpFactory} from "./http.factory";
 
 import { LoginComponent } from './login/login.component';
-import { SayHelloComponent } from './say-hello/say-hello.component';
-
-import { AuthService } from './auth.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
+import { AuthGuardService } from './auth-guard.service';
+
+
 import {Router} from '@angular/router';
+
+import { CharacterPipe } from './get-characters-images/character.pipe';
+import { GetCharactersImagesComponent } from './get-characters-images/get-characters-images.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SayHelloComponent
+    GetCharactersImagesComponent,
+    CharacterPipe
   ],
   imports: [
     BrowserModule,
@@ -28,12 +31,7 @@ import {Router} from '@angular/router';
     FormsModule
   ],
   providers: [
-        {
-            provide: Http,
-            useFactory: httpFactory,
-            deps: [XHRBackend, RequestOptions, Router]
-        },
-        AuthService
+        AuthGuardService
     ],
   bootstrap: [AppComponent]
 })
