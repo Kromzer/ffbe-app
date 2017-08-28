@@ -17,11 +17,20 @@ import io.jsonwebtoken.SignatureAlgorithm;
  */
 public class TokenAuthenticationService {
 
+	/** Token expiration time. */
 	static final long EXPIRATION_TIME = 864_000_000; // 10 days
+	/** Secret to communicate between front/back. */
 	static final String SECRET = "ThisIsASecret";
+	/** Header token prefix. */
 	static final String TOKEN_PREFIX = "Bearer";
+	/** Header string. */
 	static final String HEADER_STRING = "Authorization";
 
+	/**
+	 * Add token to headers.
+	 * @param res response
+	 * @param username username
+	 */
 	static void addAuthentication(HttpServletResponse res, String username) {
 		String JWT = Jwts.builder().setSubject(username)
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
@@ -30,6 +39,11 @@ public class TokenAuthenticationService {
 		res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
 	}
 
+	/**
+	 * Parse the token to get authentication.
+	 * @param request the request containing the header
+	 * @return the Authentication
+	 */
 	static Authentication getAuthentication(HttpServletRequest request) {
 		String token = request.getHeader(HEADER_STRING);
 		if (token != null) {

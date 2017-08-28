@@ -22,6 +22,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
+	/**
+	 * Default controller
+	 * @param url url
+	 * @param authManager authManager
+	 */
 	public JWTLoginFilter(String url, AuthenticationManager authManager) {
 		super(new AntPathRequestMatcher(url));
 		setAuthenticationManager(authManager);

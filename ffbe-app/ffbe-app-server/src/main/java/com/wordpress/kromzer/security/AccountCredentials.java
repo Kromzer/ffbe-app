@@ -26,11 +26,18 @@ public class AccountCredentials {
 		this.username = username;
 	}
 
-	public final String getPassword() {
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
 		return password;
 	}
 
-	public final void setPassword(String password) {
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
 		this.password = password;
 	}
+
 }
