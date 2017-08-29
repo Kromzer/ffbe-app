@@ -6,5 +6,5 @@
 </div>
 
 <figure style = "float: left;" *ngFor="let character of characters | character: searchText">
-	<img [src]="character.image" [title]="character.name" style="border-style: groove;">
+	<a (click)="getCharacterDetails(character.name)"><img [src]="character.image" [title]="character.name" style="border-style: groove;"></a>
 </figure>

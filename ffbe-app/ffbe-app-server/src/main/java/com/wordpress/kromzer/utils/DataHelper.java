@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +20,7 @@ import com.wordpress.kromzer.dto.SkillDTO;
 public final class DataHelper {
 
 	/** Stores character. */
-	private static List<CharacterDTO> characters = null;
+	private static Map<String, CharacterDTO> characters = null;
 
 	/** Hide default constructor. */
 	private DataHelper() {
@@ -31,7 +31,7 @@ public final class DataHelper {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	public static final List<CharacterDTO> getCharacters() throws IOException, JSONException {
+	public static final Map<String, CharacterDTO> getCharacters() throws IOException, JSONException {
 
 		if (characters == null) {
 			File unitsFile = new File(
@@ -47,7 +47,7 @@ public final class DataHelper {
 
 			Iterator<?> keys = unitsJObject.keys();
 
-			characters = new ArrayList<>();
+			characters = new HashMap<String, CharacterDTO>();
 
 			while (keys.hasNext()) {
 				CharacterDTO character = new CharacterDTO();
@@ -93,9 +93,22 @@ public final class DataHelper {
 					}
 				}
 
-				characters.add(character);
+				characters.put(character.getName(), character);
 			}
 		}
 		return characters;
+	}
+
+	/**
+	 * Method returning a character.
+	 * @param characterName the character name to return
+	 * @return the characterDTO
+	 */
+	public static final CharacterDTO getCharacter(String characterName) {
+		if (characters != null) {
+			return characters.get(characterName);
+		}
+
+		return null;
 	}
 }
