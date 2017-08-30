@@ -4,11 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService }     from '../auth-guard.service';
 
 import { LoginComponent } from '../login/login.component';
-import { GetCharactersImagesComponent } from '../get-characters-images/get-characters-images.component';
+import { CharactersListComponent } from '../characters/characters-list.component';
+import { CharacterComponent } from '../characters/character.component';
+
 
 const appRoutes: Routes = [
-  { path: 'getCharactersImages', canActivate: [AuthGuardService], component: GetCharactersImagesComponent },
-  { path: 'login', component: LoginComponent }
+    { path: 'charactersList', canActivate: [AuthGuardService], component: CharactersListComponent },
+    { path: 'getCharacter', component: CharacterComponent },
+    { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

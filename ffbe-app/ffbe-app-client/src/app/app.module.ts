@@ -11,17 +11,21 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { AuthGuardService } from './auth-guard.service';
 
+import { CharacterService } from './characters/character.service';
+
 
 import {Router} from '@angular/router';
 
-import { CharacterPipe } from './get-characters-images/character.pipe';
-import { GetCharactersImagesComponent } from './get-characters-images/get-characters-images.component';
+import { CharacterPipe } from './characters/character.pipe';
+import { CharactersListComponent } from './characters/characters-list.component';
+import { CharacterComponent } from './characters/character.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    GetCharactersImagesComponent,
+    CharactersListComponent,
+    CharacterComponent,
     CharacterPipe
   ],
   imports: [
@@ -31,7 +35,8 @@ import { GetCharactersImagesComponent } from './get-characters-images/get-charac
     FormsModule
   ],
   providers: [
-        AuthGuardService
+        AuthGuardService,
+        CharacterService
     ],
   bootstrap: [AppComponent]
 })
