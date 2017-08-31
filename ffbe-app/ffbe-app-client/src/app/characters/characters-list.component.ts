@@ -49,7 +49,17 @@ export class CharactersListComponent implements OnInit {
                             this.imageData.push(this.sanitizer.sanitize(SecurityContext.URL, `data:image/png;base64,${datas[currentData].imageByteArray}`));
                             this.imageName.push(datas[currentData].name);
                         }
-
+                        
+                        this.characters.sort(function(a, b) {
+                            if(a.name < b.name) {
+                                return -1;    
+                            }
+                            if(a.name > b.name) {
+                                return 1;   
+                            }
+                            
+                            return 0;
+                        });
                     }
                 }
             );
